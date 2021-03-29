@@ -1,0 +1,77 @@
+/*
+________          .__           ___ ___                  
+\_____  \   __ __ |__|_____    /   |   \ _____   ___  ___
+ /  / \  \ |  |  \|  |\__  \  /    ~    \\__  \  \  \/  /
+/   \_/.  \|  |  /|  | / __ \_\    Y    / / __ \_ >    < 
+\_____\ \_/|____/ |__|(____  / \___|_  / (____  //__/\_ \
+       \__>                \/        \/       \/       \/
+
+Solves rags to riches problems on https://www.quia.com/
+
+QuiaHax
+Created by Parritz
+Discord: Parritz#7465
+*/
+
+// Wait specified amount of seconds
+function sleep(seconds) {
+    let ms = seconds*1000;
+    
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+}
+
+let startButton = document.querySelector("#rrContainerDiv > div > div > div.button > button");
+
+// Click start button if it is there
+if (startButton) {
+    startButton.click();
+}
+
+// Answer buttons
+let answerButtons = [
+    document.querySelector("#rrContainerDiv > div > div.multiple-choice-component > div:nth-child(1) > div.answer-text"),
+    document.querySelector("#rrContainerDiv > div > div.multiple-choice-component > div:nth-child(2) > div.answer-text"),
+    document.querySelector("#rrContainerDiv > div > div.multiple-choice-component > div:nth-child(3) > div.answer-text"),
+    document.querySelector("#rrContainerDiv > div > div.multiple-choice-component > div:nth-child(4) > div.answer-text"),
+];
+
+// Get answer table with window.rrDataset then get the length
+let answers = window.rrDataset;
+let numberOfQuestions = answers["questions"].length;
+
+// Question HTML and the current question
+let currentQuestion = document.querySelector("#rrContainerDiv > div > div.display > div > div > div").textContent;
+
+function getAnswer() {
+    for (let i = 0; i < numberOfQuestions; i++) {
+        let question = answers["questions"][i];
+    
+        if (question["questionText"] == currentQuestion) {
+            for (let i2 = 0; i2 < question["answers"].length; i2++) {
+                if (question["answers"][i2]["isCorrect"] == true) {
+                    let answer = question["answers"][i2]["answerText"];
+                    return answer;
+                }
+            }
+        }
+    }
+}
+
+for (let i = 0; i < numberOfQuestions; i++) {
+    let answer = await getAnswer();
+    
+    for (let i2 = 0; i2 < 4; i2++) {
+        let answerButton = answerButtons[i2];
+
+        if (answerButton.textContent == answer) {
+            answerButton.click();
+        }
+    }
+
+    await sleep(2);
+    if (document.querySelector("#rrContainerDiv > div > div.display > div > div > div") != null) {
+        currentQuestion = document.querySelector("#rrContainerDiv > div > div.display > div > div > div").textContent;
+    }
+}
