@@ -41,7 +41,7 @@ let answerButtons = [
 let answers = window.rrDataset;
 let numberOfQuestions = answers["questions"].length;
 
-// Question HTML and the current question
+// Get current question
 let currentQuestion = document.querySelector("#rrContainerDiv > div > div.display > div > div > div").textContent;
 
 function getAnswer() {
