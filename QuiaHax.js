@@ -10,7 +10,7 @@ Solves rags to riches problems on https://www.quia.com/
 
 QuiaHax
 Created by Parritz
-Discord: Parritz#7465
+Discord: Parritz#0001
 */
 
 // Wait specified amount of seconds
