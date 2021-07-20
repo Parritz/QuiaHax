@@ -13,7 +13,6 @@ Created by Parritz
 Discord: Parritz#0001
 */
 
-// Wait specified amount of seconds
 function sleep(seconds) {
     let ms = seconds*1000;
     
@@ -24,7 +23,6 @@ function sleep(seconds) {
 
 let startButton = document.querySelector("#rrContainerDiv > div > div > div.button > button");
 
-// Click start button if it is there
 if (startButton) {
     startButton.click();
 }
@@ -37,11 +35,8 @@ let answerButtons = [
     document.querySelector("#rrContainerDiv > div > div.multiple-choice-component > div:nth-child(4) > div.answer-text"),
 ];
 
-// Get answer table with window.rrDataset then get the length
 let answers = window.rrDataset;
 let numberOfQuestions = answers["questions"].length;
-
-// Get current question
 let currentQuestion = document.querySelector("#rrContainerDiv > div > div.display > div > div > div").textContent;
 
 function getAnswer() {
