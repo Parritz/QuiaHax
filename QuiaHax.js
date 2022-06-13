@@ -10,7 +10,7 @@ Solves rags to riches problems on https://www.quia.com/
 
 QuiaHax
 Created by Parritz
-Discord: Parritz#0001
+Discord: parritz#9736
 */
 
 function sleep(seconds) {
@@ -21,22 +21,20 @@ function sleep(seconds) {
     });
 }
 
-let startButton = document.querySelector("#rrContainerDiv > div > div > div.button > button");
-
+const startButton = document.querySelector("#rrContainerDiv > div > div > div.button > button");
 if (startButton) {
     startButton.click();
 }
 
-// Answer buttons
-let answerButtons = [
+const answerButtons = [
     document.querySelector("#rrContainerDiv > div > div.multiple-choice-component > div:nth-child(1) > div.answer-text"),
     document.querySelector("#rrContainerDiv > div > div.multiple-choice-component > div:nth-child(2) > div.answer-text"),
     document.querySelector("#rrContainerDiv > div > div.multiple-choice-component > div:nth-child(3) > div.answer-text"),
     document.querySelector("#rrContainerDiv > div > div.multiple-choice-component > div:nth-child(4) > div.answer-text"),
 ];
 
-let answers = window.rrDataset;
-let numberOfQuestions = answers["questions"].length;
+const answers = window.rrDataset;
+const numberOfQuestions = answers["questions"].length;
 let currentQuestion = document.querySelector("#rrContainerDiv > div > div.display > div > div > div").textContent;
 
 function getAnswer() {
@@ -55,11 +53,9 @@ function getAnswer() {
 }
 
 for (let i = 0; i < numberOfQuestions; i++) {
-    let answer = await getAnswer();
-    
+    const answer = await getAnswer();
     for (let i2 = 0; i2 < 4; i2++) {
-        let answerButton = answerButtons[i2];
-
+        const answerButton = answerButtons[i2];
         if (answerButton.textContent == answer) {
             answerButton.click();
         }
